@@ -1,0 +1,68 @@
+from bst6999 import Student, BST
+
+
+if __name__ == '__main__':
+	bst1 = BST()
+	bst1.add(5)
+	bst1.add(9)
+	bst1.add(1)
+	bst1.add(8)
+	bst1.add(12)
+	bst1.add(11)
+	bst1.add(10)
+	bst1.add(13)
+
+	print(bst1.in_order_traversal())
+	print(bst1.pre_order_traversal())
+	print(bst1.post_order_traversal())
+	print(bst1.contains(1))
+	print(bst1.left_child(bst1))
+	print(bst1.remove(9))
+	print(bst1.in_order_traversal())
+	print(bst1.get_first())
+	bst1.remove_first()
+	print(bst1.in_order_traversal())
+
+	bst69 = BST()
+	bst69.add(17)
+	bst69.add(0)
+	bst69.add(20)
+	bst69.add(-6)
+	bst69.add(5)
+	bst69.add(25)
+	print(bst69.in_order_traversal())
+	bst69.remove_first()
+	print(bst69.in_order_traversal())
+
+	bst500 = BST()
+	bst500.add(5)
+	bst500.add(3)
+	bst500.add(6)
+	bst500.remove_first()
+	bst500.remove_first()
+	print(bst500.in_order_traversal())
+
+
+	bst2 = BST()
+	bst2.add(Student(88, "Sasha"))
+	bst2.add(Student(94, "Rachel"))
+	bst2.add(Student(93, "Phil"))
+	bst2.add(Student(85, "Mike"))
+	in_order = bst2.in_order_traversal()
+	print(in_order)
+
+	bst11 = BST()
+	bst11.add(5)
+	bst11.add(9)
+	bst11.add(1)
+	bst11.add(8)
+	bst11.add(12)
+	bst11.add(11)
+	bst11.add(10)
+	bst11.add(13)
+	print(bst11.in_order_traversal())
+	bst11.remove_first()
+	print(bst11.in_order_traversal())
+
+	for i in in_order:
+		print(i)

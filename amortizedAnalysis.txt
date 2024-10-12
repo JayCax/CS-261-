@@ -1,0 +1,82 @@
+# Assignment 2, Part 1 
+# Name: John-Francis Caccamo
+# Date: 4 / 21 / 20
+# Description: Analysis and answers concerning push operations, array resizing, time units and time complexity 
+
+
+# Question 1. 
+
+Let n be the number of values in the stack
+
+pushing 1 - 8 = 8 cost units with an O(1) constant time complexity pushing the first 8 values to the stack
+
+8 transitioning to 9 = 8 cost units (array of size 16) (double the array size and copy original array elements over) with O(n) time complexity
+
+pushing 9 - 16 = 8 cost units with O(1) constant time complexity 
+
+16 transitioning to 17 (array of size 32) = 16 cost units (double the array size and copy original array elements over) with O(n) time complexity 
+
+pushing 17 - 32 = 16 cost units O(1) constant time complexity 
+
+32 transitioning to 33 (array of size 64) = 32 cost units (double the array size and copy original array elements over) with O(n) time complexity 
+
+pushing 33 - 50 = 18 cost units O(1) constant time complexity 
+
+           ---A total of 8 + 8 + 8 + 16 + 16 + 32 + 18 = 106 cost units---
+
+with a complexity or average execution time of O(1)+. When there is space for new push actions adding to the top of the stack in the array, each push action is 
+a constant action at O(1) since we are just pushing a value to the end of the array - IE the array size does not matter for these push operations.
+
+O(1) is the best-case time complexity scenario
+
+When the array is doubled, this is an O(n) action since we must iterate through the original array and copy all elements over to the new larger array with a 2x 
+capcity- This episodes of the array doubling is occurring at a log2(n)>= 3 where n is the size of the array. IE the doubling occurrs at 8, 16, 32, 64, 128, 256, 512, 1024,...
+
+O(n) is the worst-case time complexity scenario occuring at a log2(n) >= r, where r is an integer value such that r >= 3, frequency
+
+The amortized constant execution time / average execution time is thus O(1)+ complexity considering these two scenarios where we can't bound the worst case
+scenario occurring where the array doubles at logrithmic rate but we can bound the average constant push cost.
+
+
+
+# Question 2.
+
+
+pushing 1 - 8 = 8 units O(1) constant time complexity pushing the first 8 values
+
+9 - 50 = 42 // 2 = 21 instances where the array adds two spaces and copies original array values over. 
+
+To push the 9th, 11th, ... 49th values we will need to copy the original arrays of size 8, 10, 12, 14, ..., 48 into a larger of array with 2 added spaces
+Thus these operations will take O(n) time (n being the number of values in the stack).
+
+We will ultimately use 
+
+8 + 10 + 12 +, ..., + 48
+2(4 + 5 + 6 + 7, ..., + 24) 
+2 ( sigma from 4 to 24) = 588 cost units where the arrays are copied to a n + 2 larger array (n being the number of values in the stack).
+
+At 9, 11, 13, ..., 49 pushing of one value on top of the stack - constant O(1) time operations occuring 21 times = 21 cost units
+
+Similarly at 10, 12, 14, ..., 50, we are still pushing a value -constant O(1) time operations occuring 21 times = 21 cost units  
+
+             --- a total of 8 + 588 + 21 + 21 = 638 cost units---
+
+The first 8 pushes of the array are O(1) constant time.
+
+For each pair of pushes after the first 8, we have O(n) (copy the array) + O(1) (push 1st) + O(1) (push 2nd) time complexity.  
+Repeat ^ to add another pair
+
+O(1) is best case occuring (n + 1) times, n >= 8 - A constant
+
+O(n) is worst case occurring every (n + 2) times, n >= 8 - A constant
+
+This can be simplified to O(n) + O(1) time complexity for each pair of pushes after the first.
+
+We know with what frequency the array will double - IE in a constant manner. 
+
+Technically, this scenario will not have an amortized constant execution time since we can bound both best and worst cases (both occurring in a constant manner). 
+
+Since in big O notation we are not concerned with lower-order constants (IE - 1), this scenario will have an average O(n) time complexity.
+
+
+
